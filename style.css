@@ -1,0 +1,29 @@
+body{
+     background-color: skyblue;
+}
+.searchBar{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     
+}
+.mainContainer{
+     display: flex;
+     flex-direction: row;
+     width: 100%;
+     /* height: ; */
+     justify-content: center;
+     align-items: center;
+}
+.dashboard{
+     display: flex;
+     flex-direction: column;
+     width: 70%;
+     /* height: 80%; */
+     background-color: aliceblue;
+     border-radius: 25px;
+}
+.sideBar{
+     display: flex;
+     flex-direction: column;
+}
