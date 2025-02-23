@@ -10,25 +10,56 @@ body{
      justify-content: center;
      width: 100%;
      border-radius: 2px solid whitesmoke;
+     margin-bottom: 10px;
      
 }
 .mainContainer{
      display: flex;
      flex-direction: row;
      width: 100%;
-     /* height: ; */
+     height: 550px ;
      justify-content: center;
-     align-items: center;
+     /* align-items: center; */
+     border: 2px solid royalblue;
 }
 .dashboard{
      display: flex;
      flex-direction: column;
      width: 70%;
-     /* height: 80%; */
+     height: 550px;
      background-color: aliceblue;
      border-radius: 25px;
+     justify-content: start;
+     margin-right: 15px;
+}
+#locateBanner{
+     width: 100%;
+     height: 300px;
+     border: 20px solid royalblue;
+     background-color: aliceblue;
+     border-radius: 25px;
+}
+#hourlyForecast{
+     width: 70%;
+     height: 120px;
+     background-color: aliceblue;
+     border: 2px skyblue;
+     border-radius: 25px;
+     margin-top: 10px;
+}
+#weatherInfo{
+     width: 70%;
+     height: 100%;
+     background-color: azure;
+     border: 2px solid skyblue;
+     border-radius: 25px;
+     margin-top: 10px;
 }
 .sideBar{
      display: flex;
      flex-direction: column;
+     width: 30%;
+     height: 550px;
+     background-color: azure;
+     border-radius: 25px;
 }
