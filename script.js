@@ -1,13 +1,15 @@
-import { fetchQuote } from "./api";
+import { getDigimons, postDigimon } from "./api";
 
-const quoteDisplay = document.getElementById("quoteDisplay");
-const authorDisplay = document.getElementById("authorDisplay");
-const getQuoteButton = document.getElementById("getQuoteButton");
-const saveQuoteButton = document.getElementById("saveQuoteButton");
-const favoritesList = document.getElementById("favoritesList");
+const displayDigimons = (digimons) => {
+     const container = document.getElementById('digimon-container');
+     container.innerHTML = '';
+     digimons.forEach(digimon => {
+          const digimonElement = document.createElement('div');
+          digimonElement.classList.add('digimon');
+          digimonElement.innerHTML = `
+          <h2>${digimon.name}</h2>
+          <img src="${digimon.img}" alt="${digimon.name}" />`;
 
-let currentQuote = {};
-
-getQuoteButton.addEventListener("click", async () => {
-     currentQuote = await fetchQuote();
-})
+          container.appendChild(digimonElement);
+     });
+};
