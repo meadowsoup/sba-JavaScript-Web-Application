@@ -1,4 +1,4 @@
-export const getDigimons = async (page = 1) => {
+export const getDigimon = async (page = 1) => {
      const response = await fetch(`https://digi-api.com/digimon?page=${page}`);
      const data = await response.json();
      return data;

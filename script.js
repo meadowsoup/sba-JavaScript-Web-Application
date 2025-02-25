@@ -1,9 +1,9 @@
-import { getDigimons, postDigimon } from "./api";
+import { getDigimon, postDigimon } from "./api";
 
-const displayDigimons = (digimons) => {
+const displayDigimon = (digimon) => {
      const container = document.getElementById('digimon-container');
      container.innerHTML = '';
-     digimons.forEach(digimon => {
+     digimon.forEach(digimon => {
           const digimonElement = document.createElement('div');
           digimonElement.classList.add('digimon');
           digimonElement.innerHTML = `
@@ -13,3 +13,10 @@ const displayDigimons = (digimons) => {
           container.appendChild(digimonElement);
      });
 };
+
+const loadDigimon = async (page = 1) => {
+     const digimon = await getDigimon(page);
+     displayDigimon(digimon);
+};
+
+loadDigimon();
