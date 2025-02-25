@@ -1,7 +1,7 @@
 export const getDigimon = async (page = 1) => {
-     const response = await fetch(`https://digi-api.com/digimon?page=${page}`);
+     const response = await fetch(`https://digi-api.com/api/v1/digimon?page=${page}`);
      const data = await response.json();
-     return data;
+     return data.content;
 }
 
 export const postDigimon = async (digimonData) => {
