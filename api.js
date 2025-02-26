@@ -1,15 +1,15 @@
-export const getDigimon = async (page = 1) => {
-     const response = await fetch(`https://digi-api.com/api/v1/digimon?page=${page}`);
-     const data = await response.json();
-     return data.content;
-}
+const dbURL = "https://digi-api.com/api/v1/digimon/";
 
-export const postDigimon = async (digimonData) => {
-     const response = await fetch('https://digi-api.com/digimon', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(digimonData)
-     });
-     const data = await response.json();
-     return data;
+async function fetchDigimon(name) {
+     try {
+          const response = await fetch (`${dbURL}${name}`);
+          if (!response.ok) {
+               throw new Error ("No Digimon Found 😤");
+          }
+          const data = await response.json();
+          return data;
+     } catch (error) {
+          console.error(error);
+          
+     }
 }

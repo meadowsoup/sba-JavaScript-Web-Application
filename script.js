@@ -1,34 +1,45 @@
-import { getDigimon, postDigimon } from "./api";
+document.getElementById("button").addEventListener("click", radarSearch);
+document.getElementById("searchInput").addEventListener("keydown", function(event) {
+     if (event.key === "Enter") {
+          radarSearch(); 
+     }
+});
 
-const displayDigimon = (digimon) => {
-     const container = document.getElementById('digimon-container');
-     container.innerHTML = '';
+async function radarSearch() {
+     const searchInput = document.getElementById("searchInput").value.trim();
+     if (searchInput === "") {
+          alert("🦵🏽");
+          return;
+     }
+     const digiData = await fetchDigimon(searchInput.toLowerCase());
+     displayData(digiData);
+}
 
-     digimon.forEach(digimon => {
-          const digimonElement = document.createElement('div');
-          digimonElement.classList.add('digimon');
+function displayData(data) {
+     const digivice = document.getElementById("digivice");
+     digivice.innerHTML = "";
 
-          digimonElement.innerHTML = `
-               <h2>${digimon.name}</h2>
-               <img src="${digimon.images[0].href}" alt="${digimon.name}" />
-               <p><strong>Level:</strong> ${digimon.levels ? digimon.levels[0].level : "Unknown"}</p>
-               <p><strong>Type:</strong> ${digimon.types ? digimon.types[0].type : "Unknown"}</p>
-               `;
+     if (!data) {
+          digivice.innerHTML = "MISSING";
+          return;
+     }
+     const { name, images, levels, types, attributes, skills } = data;
 
-          container.appendChild(digimonElement);
-     });
-};
+     const imageUrl = images.length > 0 ? images[0].href : "placeholder.png";
+     const level = levels.length > 0 ? levels[0].level : "Unknown";
+     const type = types.length > 0 ? types[0].type : "Unknown";
+     const attribute = attributes.map(attr => attr.attribute).join(", ") || "Unknown";
+     const skillList = skills.slice(0, 3).map(skill => `<li>${skill.skill}: ${skill.description}</li>`).join("");
 
-const loadDigimon = async (page = 1) => {
-     const digimon = await getDigimon(page);
-     displayDigimon(digimon);
-};
-
-loadDigimon();
-
-let currentPage = 1;
-
-document.getElementById('load-more').addEventListener('click', () => {
-     currentPage++;
-     loadDigimon(currentPage);
-})
+     digivice.innerHTML =
+          `        <div class="card-content">
+            <img src="${imageUrl}" alt="${name}">
+            <h2>${name}</h2>
+            <p><strong>Level:</strong> ${level}</p>
+            <p><strong>Type:</strong> ${type}</p>
+            <p><strong>Attribute:</strong> ${attribute}</p>
+            <h3>Skills:</h3>
+            <ul>${skillList}</ul>
+        </div>
+`;
+}
